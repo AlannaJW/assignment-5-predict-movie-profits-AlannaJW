@@ -19,6 +19,7 @@ def logistic_all_classes(data, y_data):
 
     # modifies y values to be binary for each different class
     y_class_data = make_y_binary(y_class_data, y_train)
+
     # scales and fits data so it can be used in logistic model
     scaler = StandardScaler()
     x_train = scaler.fit_transform(x_train)
@@ -46,6 +47,7 @@ def logistic_all_classes(data, y_data):
     latin_model.fit(x_train, y_class_data["latin"])
     class_models["latin"] = latin_model
 
+    print("-"*50)
     print("Hit all class model predictions")
     # use create_predictions() to get list of singular predictions
     class_pred = {"rnb" : 0, "pop" : 0, "edm" : 0, "rap" : 0, "latin" : 0}
@@ -54,7 +56,7 @@ def logistic_all_classes(data, y_data):
 
     print("Getting accuracy")
     accuracy = calc_accuracy(predictions, y_test)
-    print("Logisitic  All Classes Model Accuracy : " + str(accuracy))
+    print("Logisitic All Classes Model Accuracy : " + str(accuracy))
 
 def logistic_edm_rap(data, y_data) :
     """Predicts genre of song based on accuracy of separate logistic models for edm and rap class."""
@@ -79,6 +81,7 @@ def logistic_edm_rap(data, y_data) :
     rap_model.fit(x_train, y_class_data["rap"])
     class_models["rap"] = rap_model
 
+    print("-"*50)
     print("Hit edm and rap model predictions")
     # use create_predictions() to get list of singular predictions
     class_pred = {"edm": 0, "rap": 0}

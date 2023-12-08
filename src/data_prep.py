@@ -5,11 +5,14 @@ __license__ = "MIT"
 __email__ = "awroten@westmont.edu"
 
 import numpy as np
-from logistic_models import logistic_all_classes, logistic_edm_rap
+from src.logistic_models import logistic_all_classes, logistic_edm_rap
 def all_classes_prep(f):
     """Modifies the data to be used by the logistic model that predicts genre from all five genres.
     Seperates the genre attribute column to be modified and used to train the logistic model later on.
     Converts some string features to unique integers."""
+
+    if len(f[0]) < 23:
+        raise ValueError("there are not enough features in this array")
 
     # creates dictionaries and counters so that each unique value of chosen features recieves a unique integer
     track_artist = {}
@@ -56,7 +59,7 @@ def all_classes_prep(f):
     ## Choose which attributes not to keep
     counter = 0
     for i in range(23):
-        if i in [0, 1, 4, 6, 8, 9, 10, 12, 13, 14, 15, 20]:
+        if i in [0, 1, 4, 6, 8, 9, 13, 15, 20]:
             f = np.delete(f, i - counter, 1)
             counter += 1
     """
@@ -73,6 +76,19 @@ def all_classes_prep(f):
     Keep : 2, 3, 5, 7, 11, 16, 17, 18, 19, 21, 22 --> 0.6306492873675235
     Keep : 2, 3, 5, 7, 10, 11, 12, 14, 16, 17, 18, 19, 21, 22 --> 0.6310147399196004
     """
+    # print(y_values)
+    # for i in y_values :
+    #     if i != 0 and i != 1:
+    #         raise ValueError
+    len_row = len(f[0])
+    for row in f :
+        if len_row != len(row):
+            raise ValueError("array does not have equal length of rows")
+        for i in row :
+            if not isinstance(i, int) and not isinstance(i, float):
+                raise ValueError
+    if len(y_values) != len(f):
+        raise ValueError("not the same number of y values and x instances")
 
     # pass y values and total data to the logistic prediction function
     y_array = np.array(y_values)
@@ -82,6 +98,9 @@ def edm_rap_prep(f):
     """Modifies the data to be used by the logistic model that predicts genre from either edm or rap.
         Takes only songs that are either edm or rap. Seperates the genre attribute column to be modified
         and used to train the logistic model later on.Converts some string features to unique integers."""
+
+    if len(f[0]) < 23:
+        raise ValueError("there are not enough features in this array")
 
     # creates dictionaries and counters so that each unique value of chosen features recieves a unique integer
     track_artist = {}
@@ -152,6 +171,11 @@ def edm_rap_prep(f):
     Keep : 2, 3, 5, 7, 10, 11, 16, 17, 18, 19, 21, 22 --> 0.9955902306648575
     """
 
-    # pass y values and total data to the logistic prediction function
+    len_row = len(f[0])
+    for row in f:
+        # print(row)
+        if len_row != len(row):
+            raise ValueError("array does not have equal length of rows")
+
     y_array = np.array(y_values)
     logistic_edm_rap(editted_f, y_array)
