@@ -2,18 +2,21 @@
 
 ### [Link to Presentation](https://docs.google.com/presentation/d/1Uf5R8ULaxdBA8AckcTLqVd0WbE3RM_-HcaL8Xlz130A/edit?usp=sharing)
 
+### Alanna Wroten, awroten@westmont.edu
+
 ### License : MIT License
 Found in LICENSE.txt.
-
-### Alanna Wroten, awroten@westmont.edu
 
 ### Structure
 
 This project includes three source files: runner.py, data_prep.py, and logisitic_models.py.
 On runner.py is where the filepath to the data is needed. The data, spotify_songs.csv, is stored 
-in the data folder. Then, it calls a data preparation function from data_prep.py, which will then call a regression function from logisitic_models.py.
+in the data folder. Then, it calls a data preparation function from data_prep.py, which will then 
+call a regression function from logisitic_models.py.
+
 In short, data_prep.py functions modify and select the data needed for the regression model 
 based on which regression models are contributing to the prediction in logistic_model.py functions.
+
 This project can predict the genre of songs from all five classes (rap, edm, pop, latin, r&b) and 
 from just edm and rap.
 
@@ -67,7 +70,7 @@ rights explicitly include commercial use, and do not exclude any field of endeav
 These rights include, without limitation, the right to sublicense the work."
 #### Resources
 
-I did not copy any code segments but used these sites to inform me of various methods to 
+I did not copy any significant code segments but used these sites to inform me of various methods to 
 implement my goal, usually involving numpy arrays and skylearn.
  * [How to Read and Write With CSV Files in Python?](https://www.analyticsvidhya.com/blog/2021/08/python-tutorial-working-with-csv-file-for-data-science/#h-steps-to-read-csv-files-in-python-using-csv-reader)
  * [How to import csv data file into scikit-learn?](https://stackoverflow.com/questions/11023411/how-to-import-csv-data-file-into-scikit-learn) 
